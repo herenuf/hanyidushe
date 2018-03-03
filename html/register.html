@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/register.css"/>
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="../js/register.js"></script>
+	</head>
+	<body>
+		<div class="tittle">
+			<div class="tittle-content">
+				<div class="tittle-f">
+					<a href="home.html"><img src="../img/jpg/0.jpg" /></a>
+					<span>欢迎注册韩衣都舍</span>
+				</div>
+				<div class="tittle-t">
+					<p>已有账号?<a href="login.html">请登录</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="register">
+			<div class="register-con">
+				<div class="re-left">
+					<!--<div class="shell"><span>已是韩都衣舍用户：</span><a href="">直接登录</a></div>-->
+					<img src="../img/png/367-250.png" />
+					<div class="at-once">
+						<input type="text" />
+						<button type="button">马上订阅</button>
+					</div>
+				</div>
+				<div class="re-right">
+					<div class="re-box">
+						<div class="re-box-left">
+							<span class="red">1</span>
+							<span class="rapid">快速注册方式：</span>
+						</div>
+						<div class="re-box-right">
+							<span class="active">使用手机注册</span>
+							<span class="ac-btn">使用邮箱注册</span>
+						</div>
+					</div>
+					<!--选择方式-->
+					<div class="re-box-center"><span class="red">2</span><span class="rapid">请填写你的信息</span></div>
+					<div class="mail-phone">
+						<ul class="phone" style="display: block;" action="../php/register.php">
+							<li><span class="big">你的手机号：</span><input type="text" class="input iphone"/><button type="button" class="send">发送验证码</button><label class="label"></label></li>
+							<li class="tbig"><sapn class="tips"><span>请输入您在注册时使用的手机号码,若当前号码不用/丢失，或无法收到验证码?</span><a href="" class="at">其他验证方式</a></sapn></li>
+							<li><span class="big">验证码：</span><span><input type="text" class="input"/></span><label class="label"></label></li>
+							<li><span class="big">密码：</span><span><input type="password" class="input pwd"/></span><label class="label"></label></li>
+							<li class="tbig"><span class="tips">6-16位字符，可使用字母、数字或符号的组合</span></li>
+							<li><span class="big">确认密码：</span><span><input type="password" class="input pwd1"/></span><label class="label"></label></li>
+							<li class="tbig"><spans class="tips"><input type="checkbox" class="check1"/>我已看过并接受<a href="" class="at">《用户协议》</a></span></li>
+							<p class="consent"><span class="tips"><button type="button" class="btn phonebtn">同意协议并注册</button></span></p>
+						</ul>
+						<ul class="mail" style="display: none;">
+							<li><span class="big">Email：</span><input type="text" class="input mail1"/><label class="label1"></label></li>
+							<li class="tbig"><sapn class="tips"><span>Email地址作为用户名，同时也用于接收账户信息、订单通知及密码找回等功能</span></sapn></li>
+							<li><span class="big">密码：</span><span><input type="password" class="input pwdword"/></span><label class="label1"></label></li>
+							<li class="tbig"><sapn class="tips"><span>8-24位字符，必须包含字母、数字的组合</span></sapn></li>
+							<li><span class="big">确认密码：</span><span><input type="password" class="input pwdword1" /></span><label class="label1"></label></li>
+							<li class="tbig"><span class="tips">请再次输入密码，两次输入必须一致</span></li>
+							<li><span class="big">验证码：</span><span><input type="text" class="input" id="input"/></span><span class="code">1234</span><label class="label1"></label></li>
+							<li class="tbig"><spans class="tips"><input type="checkbox" class="check2" />我已看过并接受<a href="" class="at">《用户协议》</a></span></li>
+							<p class="consent"><span class="tips"><button type="button" class="btn mailbtn">同意协议并注册</button></span></p>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

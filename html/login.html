@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/login.css" />
+		<script src="../js/jquery-3.2.1.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+	</head>
+	<body>
+		<div class="tittle">
+			<div class="tittle-content">
+				<div class="tittle-f">
+					<a href="home.html"><img src="../img/jpg/0.jpg" /></a>
+					<span>欢迎登录</span>
+				</div>
+				<div class="tittle-t">
+					<p>还没账号?<a href="register.html">请注册</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="security">
+			<div class="sec-content">
+				<div class="seu-cont-f"></div>
+			</div>
+		</div>
+		<div class="register">
+			<div class="register-con">
+				<div class="re-left">
+					<!--<div class="shell"><span>已是韩都衣舍用户：</span><a href="">直接登录</a></div>-->
+					<img src="../img/png/410-290.png" />
+				</div>
+				<div class="re-right">
+					<form class="re-box" id="myform">
+						<li><p>用户登录</p></li>
+						<li class="none"></li>
+						<li><span class="na">用户名：</span><input type="text" class="input" placeholder="邮箱地址/手机号" name="userName" id="userName"/></li>
+						<li><span class="na">密码：</span><input type="password" class="input" name="userPwd" id="userPwd"/></li>
+						<li><span class="na">验证码：</span><input type="text"  class="input1"/><span class="code">4567</span><label></label></li>
+						<li><span class="lo"><button type="button" class="btn" id="btn_login">立即登录</button><input type="checkbox" class="input2"/><span class="inset">保存登录信息</span></span></li>
+						<li><span class="lo"><a href="register.html">注册</a><span>|</span><a href="">忘记密码？</a></span></li>
+					</form>
+					<ul class="else-list">
+						<span>其他登录方式：</span>
+						<li>QQ登录</li>
+						<li>新浪微博</li>
+						<li>迅雷登录</li>
+						<li>支付宝登录</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+<script>
+	
+	
+$(function(){
+	
+	//	随机数的验证码
+	var flag1=false;
+
+	function randomNum(n){ 
+		 var t=''; 
+		 for(var i=0;i<4;i++){ 
+		 t+=Math.floor(Math.random()*10);
+		 } 
+		 return t; 
+	} 
+	//验证码
+	$('.code').on('click',function(){
+		$(this).text(randomNum())
+	})
+	$('.input1').on('keyup',function(){
+		if($('.code').text()==$(this).val()){
+			$('label').text("");
+			flag1=true;
+		}else{
+			$('label').text("验证失败");
+			flag1=false;
+		}
+	})
+	
+//	点击登录验证用户密码是否正确
+	$('.btn').on('click',function(){
+		console.log($("#myform").serialize());
+		if(flag1){
+//			console.log('42342')
+			//	请求数据
+			//这是在勾选了保存登录信息所做的操作
+	//			console.log('4324')
+				$.ajax({
+			        url : "http://127.0.0.1/hanyidushe/php/login1.php",
+			        type : "post",
+			        dataType : "json",
+			        data : $("#myform").serialize(),
+			        success : function(res){
+			        	console.log(res);
+			            if(res[0].status == 1){
+//			                alert(res[0].msg);
+			                // ?userInfo="+JSON.stringify(res[0].data);
+			                if($('.input2').is(':checked')){//判断是否选中保存登录信息
+			                	$.cookie("userInfo", JSON.stringify(res[0].data), {expires : 7});//保存
+			                	window.sessionStorage.setItem("userInfo",JSON.stringify(res[0].data));
+			                	var con=confirm('登录成功是否跳转');
+								if(con==true){
+									window.location.href="home.html";
+								}
+			                }else{//不保存
+			                	var con1=confirm('未保存登录信息,是否跳转');
+								if(con1==true){
+									window.location.href="home.html";
+								}
+			                }	
+			            }else{
+			            	alert('用户名或者密码输入错误');
+			            }
+			        }
+			    })
+		}else{
+			alert('请检查输入内容是否正确')
+		}
+	})
+})
+	
+	
+	
+</script>
